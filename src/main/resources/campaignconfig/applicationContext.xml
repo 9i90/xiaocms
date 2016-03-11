@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans default-autowire="byName" default-lazy-init="false"
+	xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+	 xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+	
+  	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">  
+        <property name="jndiName">  
+            <value>java:comp/env/jndi/fyzc_wechat</value>  
+        </property>  
+    </bean>
+	<bean id="jdbcTemplate"  class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+	 <!-- mybatis配置 -->
+	 <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">      
+ 		<property name="dataSource" ref="dataSource" />     
+ 		<!-- mapper和resultmap配置路径 -->   
+       	<property name="mapperLocations">  
+            <list>  
+            <!-- 表示在com.idesky.wechat.ibatis.config.mappings包或以下所有目录中，以.xml结尾所有文件 --> 
+             <value> classpath:com/idesky/crowdfund/server/mapper/*.xml</value > 
+            </list>       
+       	</property>
+ 		<property name="plugins">
+            <array>
+                <bean class="com.idesky.crowdfund.page.PageInterceptor">
+               		<property name="dialect" value="mysql" />
+                </bean>
+            </array>
+        </property>
+	</bean>   
+	 
+	<bean id="baseDao" class="com.idesky.crowdfund.server.dao.impl.BaseDaoImpl">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean> 
+	
+	<context:component-scan base-package="com.idesky.crowdfund.server" /><!--  -->
+	<!-- 激活annotation功能 -->  
+    <context:annotation-config />  
+    <!-- 激活annotation功能 -->  
+    <context:spring-configured/>  
+    
+	<!--配置事务管理器   -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<tx:advice id="transactionAdvice" transaction-manager="transactionManager">  
+	    <tx:attributes>  
+	        <tx:method name="get*" read-only="true" />  
+	        <tx:method name="find*" read-only="true" />  
+	        <tx:method name="load*" read-only="true" /> 
+	        <tx:method name="save*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>  
+	        <tx:method name="delete*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>  
+	        <tx:method name="add*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>  
+	        <tx:method name="update*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>  
+	        <tx:method name="remove*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>  
+	    </tx:attributes>  
+	</tx:advice>  
+	  
+	<aop:config>  
+	    <!-- 第一个"*"代表所有类, 第二个"*"代表所有方法, ".."代表任意参数 -->  
+	    <aop:pointcut id="pointcut" expression="execution(* com.idesky.crowdfund.server.service.*.*(..))" />  
+	    
+	    <!-- 把事务控制在service层 -->  
+	    <aop:advisor pointcut-ref="pointcut" advice-ref="transactionAdvice" />  
+	</aop:config>
+	
+	<bean id="springInfo" class="com.idesky.crowdfund.utils.SpringInfo" />
+	
+	
+	
+	
+	
+	
+	
+	<aop:config>  
+        <aop:aspect id="TestAspect" ref="aspectBean">  
+            <!--配置com.spring.service包下所有类或接口的所有方法-->  
+            <aop:pointcut id="businessService" expression="execution(* com.idesky.crowdfund.server.service.*.*(..))" />  
+<!--             <aop:before pointcut-ref="businessService" method="doBefore"/>   -->
+<!--             <aop:after pointcut-ref="businessService" method="doAfter"/>   -->
+            <aop:around pointcut-ref="businessService" method="doAround"/>  
+<!--             <aop:after-throwing pointcut-ref="businessService" method="doThrowing" throwing="ex"/>   -->
+        </aop:aspect>  
+    </aop:config>  
+      
+    <bean id="aspectBean" class="com.luo90.campaign.aop.CampaignAspect">
+    	<property name="jdbcTemplate" ref="jdbcTemplate"/>
+    	<property name="executeMap" >
+    		<map>
+                <entry key="sendMsg" value-ref="campaignSendMsg" />
+                <entry key="sendEmail" value-ref="campaignSendEmail" />
+            </map>
+    	</property>
+    </bean>  
+	<bean id="campaignSendMsg" class="com.idesky.crowdfund.common.CampaignSendMsg"></bean>
+	<bean id="campaignSendEmail" class="com.idesky.crowdfund.common.CampaignSendEmail"></bean>
+</beans>
