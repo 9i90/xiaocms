@@ -19,7 +19,7 @@
 		<context:exclude-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
-	<context:component-scan base-package="com.luo90.nodecfg.*">
+	<context:component-scan base-package="com.xiao.*">
 		<context:exclude-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
@@ -118,7 +118,7 @@
 				<value>org.jeecgframework.web.cgform.entity.*</value>
 				<value>org.jeecgframework.web.cgreport.entity.*</value>
 				<value>org.jeecgframework.web.sms.*</value>
-				<value>com.luo90.nodecfg.entity.*</value>
+				<value>com.xiao.entity.*</value>
 			</list>
 		</property>
 	</bean>
