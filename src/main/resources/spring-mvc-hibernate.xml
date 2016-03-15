@@ -118,7 +118,7 @@
 				<value>org.jeecgframework.web.cgform.entity.*</value>
 				<value>org.jeecgframework.web.cgreport.entity.*</value>
 				<value>org.jeecgframework.web.sms.*</value>
-				<value>com.xiao.entity.*</value>
+				<value>com.xiao.pojo.*</value>
 			</list>
 		</property>
 	</bean>
