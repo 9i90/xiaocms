@@ -34,7 +34,7 @@ public class SysNoticeEntity implements java.io.Serializable {
 	/**标题*/
 	private java.lang.String title;
 	/**内容*/
-	private java.lang.Object content;
+	private java.lang.String content;
 	/**录入时间*/
 	private java.util.Date addtime;
 	/**状态（0：草稿；1：发布；2：关闭）*/
@@ -82,7 +82,7 @@ public class SysNoticeEntity implements java.io.Serializable {
 	 *@return: java.lang.Object  内容
 	 */
 	@Column(name ="CONTENT",nullable=false,length=65535)
-	public java.lang.Object getContent(){
+	public java.lang.String getContent(){
 		return this.content;
 	}
 
@@ -90,7 +90,7 @@ public class SysNoticeEntity implements java.io.Serializable {
 	 *方法: 设置java.lang.Object
 	 *@param: java.lang.Object  内容
 	 */
-	public void setContent(java.lang.Object content){
+	public void setContent(java.lang.String content){
 		this.content = content;
 	}
 	/**

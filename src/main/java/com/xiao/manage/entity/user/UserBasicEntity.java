@@ -56,6 +56,7 @@ public class UserBasicEntity implements java.io.Serializable {
 	 *方法: 取得java.lang.Integer
 	 *@return: java.lang.Integer  userId
 	 */
+	@Id
 	@Column(name ="USER_ID",nullable=false,precision=10,scale=0)
 	public java.lang.Integer getUserId(){
 		return this.userId;

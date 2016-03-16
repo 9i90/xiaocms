@@ -52,7 +52,25 @@ public class SysConfigController extends BaseController {
 	 */
 	@RequestMapping(params = "sysConfig")
 	public ModelAndView sysNotice(HttpServletRequest request) {
-		return new ModelAndView("com/xiao/system/sysConfigList");
+		//域名配置
+		TSConfig domainname = systemService.findUniqueByProperty(TSConfig.class, "code", "domainname");
+		if(domainname==null){
+			domainname=new TSConfig();
+			domainname.setCode("domainname");
+			domainname.setName("网站域名");
+		}
+		request.setAttribute("domainname", domainname);
+		
+		//分享配置
+		TSConfig share = systemService.findUniqueByProperty(TSConfig.class, "code", "share");
+		if(share==null){
+			share=new TSConfig();
+			share.setCode("share");
+			share.setName("分享获取");
+		}
+		request.setAttribute("share", share);
+		
+		return new ModelAndView("com/xiao/manage/system/sysConfigList");
 	}
 
 	/**

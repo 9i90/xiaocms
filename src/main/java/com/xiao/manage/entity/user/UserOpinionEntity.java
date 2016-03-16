@@ -38,7 +38,7 @@ public class UserOpinionEntity implements java.io.Serializable {
 	/**phone*/
 	private java.lang.String phone;
 	/**反馈内容*/
-	private java.lang.Object content;
+	private java.lang.String content;
 	/**状态（1：反馈发出；2：已处理；）*/
 	private java.lang.String status;
 	
@@ -113,8 +113,8 @@ public class UserOpinionEntity implements java.io.Serializable {
 	 *方法: 取得java.lang.Object
 	 *@return: java.lang.Object  反馈内容
 	 */
-	@Column(name ="CONTENT",nullable=true,length=65535)
-	public java.lang.Object getContent(){
+	@Column(name ="CONTENT",nullable=true,length=4000)
+	public java.lang.String getContent(){
 		return this.content;
 	}
 
@@ -122,7 +122,7 @@ public class UserOpinionEntity implements java.io.Serializable {
 	 *方法: 设置java.lang.Object
 	 *@param: java.lang.Object  反馈内容
 	 */
-	public void setContent(java.lang.Object content){
+	public void setContent(java.lang.String content){
 		this.content = content;
 	}
 	/**
