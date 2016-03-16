@@ -1,4 +1,5 @@
 package com.xiao.manage.controller.account;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
 import org.jeecgframework.core.common.controller.BaseController;
 import org.jeecgframework.core.common.hibernate.qbc.CriteriaQuery;
 import org.jeecgframework.core.common.model.json.AjaxJson;
@@ -134,7 +134,30 @@ public class FormWithdrawController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
-
+	/**
+	 * 提现审核
+	 * @param withDrawId 提现申请ID
+	 * @param status 审核状态（1：审核通过；-2：审核不通过）
+	 * @param yesAmount 实际到账金额
+	 * @param remark 备注
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(params = "audit")
+	@ResponseBody
+	public AjaxJson audit(Integer withDrawId,String withdrawTicket,String status, String remark,Date notifyTime, HttpServletRequest request) {
+		AjaxJson j = new AjaxJson();
+		message = "提现审核成功";
+		try {
+			formWithdrawService.audit(withDrawId, withdrawTicket, status,notifyTime, remark);
+			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
+		} catch (Exception e) {
+			e.printStackTrace();
+			message = e.getMessage();
+		}
+		j.setMsg(message);
+		return j;
+	}
 	/**
 	 * 提现管理列表页面跳转
 	 * 
@@ -147,5 +170,20 @@ public class FormWithdrawController extends BaseController {
 			req.setAttribute("formWithdrawPage", formWithdraw);
 		}
 		return new ModelAndView("com/xiao/manage/account/formWithdraw");
+	}
+	
+	/**
+	 * 提现管理列表页面跳转
+	 * 
+	 * @return
+	 */
+	@RequestMapping(params = "toaudit")
+	public ModelAndView toaudit(FormWithdrawEntity formWithdraw, HttpServletRequest req) {
+		if (StringUtil.isNotEmpty(formWithdraw.getId())) {
+			formWithdraw = formWithdrawService.getEntity(FormWithdrawEntity.class, formWithdraw.getId());
+			if(formWithdraw.getNotifyTime()==null)formWithdraw.setNotifyTime(new Date());
+			req.setAttribute("formWithdrawPage", formWithdraw);
+		}
+		return new ModelAndView("com/xiao/manage/account/withdrawAudit");
 	}
 }

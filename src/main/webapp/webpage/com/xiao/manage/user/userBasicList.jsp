@@ -5,7 +5,7 @@
   <div region="center" style="padding:1px;">
   <t:datagrid name="userBasicList" title="用户基本信息" actionUrl="userBasicController.do?datagrid" idField="id" fit="true">
    <t:dgCol title="编号" field="id" hidden="true"></t:dgCol>
-   <t:dgCol title="userId" field="userId"   width="120"></t:dgCol>
+   <t:dgCol title="用户" field="userId" dictionary="user_info,user_id,nickname"    width="120"></t:dgCol>
    <t:dgCol title="真实姓名" field="realname"   width="120"></t:dgCol>
    <t:dgCol title="手机号" field="phone"   width="120"></t:dgCol>
    <t:dgCol title="性别（M：男，F：女）" field="gender"   width="120"></t:dgCol>
