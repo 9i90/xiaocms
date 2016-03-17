@@ -24,6 +24,6 @@
  
  <script type="text/javascript">
  function audit(id){
-	 createwindow('用户提现审核','formWithdrawController.do?toaudit&id='+id,700,400);
+	 createwindow('用户提现审核','formWithdrawController.do?toaudit&id='+id,700,500);
  }
  </script>

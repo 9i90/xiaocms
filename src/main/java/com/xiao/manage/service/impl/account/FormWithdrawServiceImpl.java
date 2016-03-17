@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.xiao.manage.entity.account.FormWithdrawEntity;
 import com.xiao.manage.entity.account.UserAccountEntity;
 import com.xiao.manage.entity.account.UserAccountLogEntity;
+import com.xiao.manage.entity.user.UserNoticeEntity;
 import com.xiao.manage.service.account.FormWithdrawServiceI;
 
 import org.jeecgframework.core.common.service.impl.CommonServiceImpl;

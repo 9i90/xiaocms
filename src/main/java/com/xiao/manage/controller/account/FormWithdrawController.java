@@ -24,7 +24,10 @@ import org.jeecgframework.web.system.service.SystemService;
 import org.jeecgframework.core.util.MyBeanUtils;
 
 import com.xiao.manage.entity.account.FormWithdrawEntity;
+import com.xiao.manage.entity.user.UserInfoEntity;
+import com.xiao.manage.entity.user.UserNoticeEntity;
 import com.xiao.manage.service.account.FormWithdrawServiceI;
+import com.xiao.utils.StringUtils;
 
 /**   
  * @Title: Controller
@@ -145,11 +148,28 @@ public class FormWithdrawController extends BaseController {
 	 */
 	@RequestMapping(params = "audit")
 	@ResponseBody
-	public AjaxJson audit(Integer withDrawId,String withdrawTicket,String status, String remark,Date notifyTime, HttpServletRequest request) {
+	public AjaxJson audit(Integer withDrawId,String withdrawTicket,String status, String remark,Date notifyTime,String sendMsg,String msgContent, HttpServletRequest request) {
 		AjaxJson j = new AjaxJson();
 		message = "提现审核成功";
 		try {
 			formWithdrawService.audit(withDrawId, withdrawTicket, status,notifyTime, remark);
+			
+			if("1".equals(sendMsg)&&msgContent!=null&&msgContent.trim().length()>0){
+				FormWithdrawEntity t = formWithdrawService.get(FormWithdrawEntity.class, withDrawId);
+				UserInfoEntity u = systemService.get(UserInfoEntity.class, t.getUserId());
+				UserNoticeEntity notice = new UserNoticeEntity();
+				msgContent=msgContent.replaceAll("name", u.getNickname());
+				msgContent=msgContent.replaceAll("money",StringUtils.DoubleStrRound(t.getAmount().doubleValue(),2));
+				msgContent=msgContent.replaceAll("fee",StringUtils.DoubleStrRound(t.getFee().doubleValue(),2));
+				notice.setContext(msgContent);
+				notice.setSendtime(new Date());
+				notice.setStatus("0");
+				notice.setTitle("提现到账通知");
+				notice.setType("0");
+				notice.setUserId(t.getUserId());
+				systemService.save(notice);
+			}
+			
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
 			e.printStackTrace();

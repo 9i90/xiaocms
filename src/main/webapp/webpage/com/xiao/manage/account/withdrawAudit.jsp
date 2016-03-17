@@ -105,6 +105,16 @@
 						<textarea rows="5" cols="8" style="width: 300px;height:80px;" name="remark">${formWithdrawPage.remark}</textarea>
 					</td>
 				</tr>
+				<tr>
+					<td align="right">
+						<label class="Validform_label">
+							<label><input type="checkbox" name="sendMsg" value="1" checked="checked">发送站内信</label>
+						</label>
+					</td>
+					<td class="value">
+						<textarea rows="5" cols="8" style="width: 300px;height:80px;" name="msgContent"><t:mutiLang langKey="userMsgModel"/></textarea>
+					</td>
+				</tr>
 			</table>
 		</t:formvalid>
  </body>
