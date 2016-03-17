@@ -108,5 +108,5 @@
 
 	<!-- 智能表单配置引入 -->
 	<import resource="classpath*:org/jeecgframework/web/cgform/common/spring-mvc-cgform.xml" />
-
+	<bean id="springInfo" class="com.xiao.utils.SpringInfo" />
 </beans>

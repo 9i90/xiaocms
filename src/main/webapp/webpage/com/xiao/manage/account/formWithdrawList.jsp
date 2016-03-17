@@ -26,4 +26,18 @@
  function audit(id){
 	 createwindow('用户提现审核','formWithdrawController.do?toaudit&id='+id,700,500);
  }
+ $(document).ready(function(){ 
+		$("input[name='addtime_begin']").attr("class", "Wdate").attr("style",
+		"height:30px;width:180px;").click(function() {
+			WdatePicker({
+						dateFmt : 'yyyy-MM-dd HH:mm:ss'
+					});
+		});
+		$("input[name='addtime_end']").attr("class", "Wdate").attr("style",
+				"height:30px;width:180px;").click(function() {
+					WdatePicker({
+								dateFmt : 'yyyy-MM-dd HH:mm:ss'
+							});
+				});
+	});
  </script>
