@@ -48,12 +48,11 @@
 				<tr>
 					<td align="right">
 						<label class="Validform_label">
-							状态（0：草稿；1：发布；2：关闭）:
+							状态:
 						</label>
 					</td>
 					<td class="value">
-						<input class="inputxt" id="status" name="status" 
-							   value="${sysNoticePage.status}" datatype="*">
+						<t:dictSelect field="status" hasLabel="false" typeGroupCode="s_notice_s" defaultVal="${sysNoticePage.status}"></t:dictSelect>
 						<span class="Validform_checktip"></span>
 					</td>
 				</tr>

@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.xiao.manage.entity.account.UserAccountEntity;
 import com.xiao.manage.entity.account.UserAccountLogEntity;
+import com.xiao.manage.entity.user.UserExtensionLogEntity;
 import com.xiao.manage.entity.web.ArticleReadRecordEntity;
 import com.xiao.manage.entity.web.ArticleReadTempEntity;
 import com.xiao.manage.service.account.UserAccountServiceI;
@@ -120,6 +121,14 @@ public class UserAccountServiceImpl extends CommonServiceImpl implements UserAcc
 			accountLog.setAddtime(new Date());
 			//账户变动日志
 			commonDao.save(accountLog);
+			
+			//分享收益记录
+			UserExtensionLogEntity userExtensionLog = new UserExtensionLogEntity();
+			userExtensionLog.setAddtime(new Date());
+			userExtensionLog.setMoney(new BigDecimal(profit));
+			userExtensionLog.setSource("1");
+			userExtensionLog.setUserId(userId);
+			commonDao.save(userExtensionLog);
 		}
 	}
 	
