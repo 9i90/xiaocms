@@ -42,7 +42,18 @@ public class UserAccountServiceImpl extends CommonServiceImpl implements UserAcc
 		commonDao.executeSql("delete from  article_read_temp");
 		
 		//TODO 过滤重复浏览IP限制等的记录
-		
+		String sql="";
+		sql+=" select * from article_read_record ";
+		sql+=" where id not in(";
+		sql+=" select min(id) from article_read_record group by  article_id,share_user_id,addip having count(*)>1";
+		sql+=" )";
+		sql+=" and id not in(";
+		sql+=" select id from article_read_record group by  article_id,share_user_id,addip having count(*)=1";
+		sql+=" )";
+		commonDao.executeSql("insert into article_read_temp "+sql);
+		commonDao.executeSql("insert into article_read_history select * from article_read_temp");
+		commonDao.executeSql("delete from  article_read_record where id in (select id from article_read_temp)");
+		commonDao.executeSql("delete from  article_read_temp");
 		
 		
 		int shareProfitSize = 30;
