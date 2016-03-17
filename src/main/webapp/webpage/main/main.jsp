@@ -129,7 +129,7 @@ a:hover {
 <div region="north" border="false" title=" JEECG Framework -3.5.2" style="BACKGROUND: #E6E6FA; height: 85px; padding: 1px; overflow: hidden;">
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
 <tr>
-    <td align="left" style="vertical-align: text-bottom;"><img src="plug-in/login/images/head.png;"> <img src="plug-in/login/images/foot.png"></td>
+    <td align="left" style="vertical-align: text-bottom;"><!-- <img src="plug-in/login/images/head.png;"> --> <img src="plug-in/login/images/foot.png"></td>
     <td align="right" nowrap>
         <table>
             <tr>
@@ -225,9 +225,7 @@ a:hover {
     <div align="center" style="color: #CC99FF; padding-top: 2px">&copy;
         <t:mutiLang langKey="common.copyright"/>
         <span class="tip">
-            <a href="http://www.jeecg.org" title=" JEECG Framework -3.5.2"> JEECG Framework -3.5.2</a>
             <t:mutiLang langKey="common.copyright"/>:
-            <a href="#" title=" JEECG Framework -3.5.2">JEECG Framework -3.5.2</a>
         </span>
     </div>
 </div>

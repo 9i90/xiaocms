@@ -1373,6 +1373,47 @@
 			<description>自定义字典表的显示文本-字典查询条件</description>
 		</attribute>
 	</tag>
+	<!-- 文本字典转换显示 -->
+	<tag>
+		<name>dictLabel</name>
+		<tag-class>org.jeecgframework.tag.core.easyui.DictLabelTag</tag-class>
+		<body-content>JSP</body-content>
+		<display-name>字典转换显示控件</display-name>
+		<small-icon>111</small-icon>
+		<description>字典转换显示控件</description>
+		<attribute>
+			<name>typeGroupCode</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>数据字典类型编码</description>
+		</attribute>
+		<attribute>
+			<name>field</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>需要转换的编码</description>
+		</attribute>
+		<attribute>
+			<name>dictTable</name>
+			<rtexprvalue>true</rtexprvalue>
+			<description>自定义字典表</description>
+		</attribute>
+		<attribute>
+			<name>dictField</name>
+			<rtexprvalue>true</rtexprvalue>
+			<description>自定义字典表的匹配字段-字典的编码值</description>
+		</attribute>
+		<attribute>
+			<name>dictText</name>
+			<rtexprvalue>true</rtexprvalue>
+			<description>自定义字典表的显示文本-字典的显示值</description>
+		</attribute>
+		<attribute>
+			<name>dictCondition</name>
+			<rtexprvalue>true</rtexprvalue>
+			<description>自定义字典表的显示文本-字典查询条件</description>
+		</attribute>
+	</tag>
 	<!-- 按钮权限标签 -->
 	<tag>
 		<name>authFilter</name>

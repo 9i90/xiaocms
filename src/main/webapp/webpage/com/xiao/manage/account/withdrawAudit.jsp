@@ -17,17 +17,17 @@
 						</label>
 					</td>
 					<td class="value">
-						${formWithdrawPage.userId}
+						<t:dictLabel field="${formWithdrawPage.userId}" dictTable="user_info" dictField="user_id" dictText="nickname"></t:dictLabel>
 					</td>
 				</tr>
 				<tr>
 					<td align="right">
 						<label class="Validform_label">
-							提现方式（1：支付宝；2：微信）:
+							提现方式:
 						</label>
 					</td>
 					<td class="value">
-						${formWithdrawPage.type}
+ 						<t:dictLabel field="${formWithdrawPage.type}" typeGroupCode="t_withdraw"></t:dictLabel>
 					</td>
 				</tr>
 				<tr>
