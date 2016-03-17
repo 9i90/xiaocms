@@ -1,4 +1,5 @@
 package com.xiao.manage.controller.system;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
 import org.jeecgframework.core.common.controller.BaseController;
 import org.jeecgframework.core.common.hibernate.qbc.CriteriaQuery;
 import org.jeecgframework.core.common.model.json.AjaxJson;
@@ -141,8 +141,10 @@ public class SysNoticeController extends BaseController {
 	public ModelAndView addorupdate(SysNoticeEntity sysNotice, HttpServletRequest req) {
 		if (StringUtil.isNotEmpty(sysNotice.getId())) {
 			sysNotice = systemService.getEntity(SysNoticeEntity.class, sysNotice.getId());
-			req.setAttribute("sysNoticePage", sysNotice);
+		}else{
+			sysNotice.setAddtime(new Date());
 		}
+		req.setAttribute("sysNoticePage", sysNotice);
 		return new ModelAndView("com/xiao/manage/system/sysNotice");
 	}
 }

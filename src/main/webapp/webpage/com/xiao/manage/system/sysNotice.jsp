@@ -17,7 +17,7 @@
 						</label>
 					</td>
 					<td class="value">
-						<input class="inputxt" id="title" name="title" 
+						<input class="inputxt" id="title" name="title" style="width: 500px;"
 							   value="${sysNoticePage.title}" datatype="*">
 						<span class="Validform_checktip"></span>
 					</td>
@@ -29,8 +29,7 @@
 						</label>
 					</td>
 					<td class="value">
-						<input class="inputxt" id="content" name="content" 
-							   value="${sysNoticePage.content}" datatype="*">
+						<textarea rows="10" cols="12" style="width: 500px;height:200px;" id="content" name="content" datatype="*">${sysNoticePage.content}</textarea>
 						<span class="Validform_checktip"></span>
 					</td>
 				</tr>
@@ -41,8 +40,8 @@
 						</label>
 					</td>
 					<td class="value">
-						<input class="Wdate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"  style="width: 150px" id="addtime" name="addtime" 
-							     value="<fmt:formatDate value='${sysNoticePage.addtime}' type="date" pattern="yyyy-MM-dd hh:mm:ss"/>" datatype="*">
+						<input class="Wdate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"  style="width: 150px" id="addtime" name="addtime"  readonly="readonly"
+							     value="<fmt:formatDate value='${sysNoticePage.addtime}' type="date" pattern="yyyy-MM-dd hh:mm:ss" />" datatype="*">
 						<span class="Validform_checktip"></span>
 					</td>
 				</tr>
