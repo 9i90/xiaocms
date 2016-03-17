@@ -50,7 +50,7 @@ public class ArticleInfoEntity implements java.io.Serializable {
 	/**站长推荐（1：推荐；0：不推荐）*/
 	private java.lang.String recommended;
 	/**内容*/
-	private java.lang.Object content;
+	private java.lang.String content;
 	/**录入时间*/
 	private java.util.Date addtime;
 	/**文章来源(user：用户后台录入;sina：新浪;等等其他自己根据需要编)*/
@@ -226,7 +226,7 @@ public class ArticleInfoEntity implements java.io.Serializable {
 	 *@return: java.lang.Object  内容
 	 */
 	@Column(name ="CONTENT",nullable=false,length=65535)
-	public java.lang.Object getContent(){
+	public java.lang.String getContent(){
 		return this.content;
 	}
 
@@ -234,7 +234,7 @@ public class ArticleInfoEntity implements java.io.Serializable {
 	 *方法: 设置java.lang.Object
 	 *@param: java.lang.Object  内容
 	 */
-	public void setContent(java.lang.Object content){
+	public void setContent(java.lang.String content){
 		this.content = content;
 	}
 	/**

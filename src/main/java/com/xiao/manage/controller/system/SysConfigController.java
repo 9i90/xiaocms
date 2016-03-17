@@ -95,9 +95,21 @@ public class SysConfigController extends BaseController {
 				message = "系统配置更新失败";
 			}
 		} else {
-			message = "系统配置添加成功";
-			systemService.save(config);
-			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
+			TSConfig t = systemService.findUniqueByProperty(TSConfig.class, "code", config.getCode());
+			if(t!=null){
+				try {
+					t.setContents(config.getContents());
+					systemService.saveOrUpdate(t);
+					systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
+				} catch (Exception e) {
+					e.printStackTrace();
+					message = "系统配置更新失败";
+				}
+			}else{
+				message = "系统配置添加成功";
+				systemService.save(config);
+				systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
+			}
 		}
 		j.setMsg(message);
 		return j;
