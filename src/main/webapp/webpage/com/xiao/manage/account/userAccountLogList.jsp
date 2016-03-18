@@ -5,7 +5,7 @@
   <div region="center" style="padding:1px;">
   <t:datagrid name="userAccountLogList" title="账户变动日志" actionUrl="userAccountLogController.do?datagrid" idField="id" fit="true" queryMode="group">
    <t:dgCol title="编号" field="id" hidden="true"></t:dgCol>
-   <t:dgCol title="用户" field="userId" query="true" dictionary="user_info,user_id,nickname"  width="120"></t:dgCol>
+   <t:dgCol title="用户" field="userId" dictionary="user_info,user_id,nickname"  width="120"></t:dgCol>
    <t:dgCol title="资金变动类型" field="type"   width="120"></t:dgCol>
    <t:dgCol title="变动资金" field="money"   width="120"></t:dgCol>
    <t:dgCol title="关联数据ID" field="dataId"   width="120" hidden="true"></t:dgCol>
