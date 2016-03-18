@@ -22,8 +22,6 @@
 							   value="${articleInfoPage.siteCode}" datatype="*">
 						<span class="Validform_checktip"></span>
 					</td>
-				</tr>
-				<tr>
 					<td align="right">
 						<label class="Validform_label">
 							文章分类（多个逗号分隔）:
@@ -46,8 +44,6 @@
 							   value="${articleInfoPage.title}" datatype="*">
 						<span class="Validform_checktip"></span>
 					</td>
-				</tr>
-				<tr>
 					<td align="right">
 						<label class="Validform_label">
 							关键字（多个逗号分隔）:
@@ -70,8 +66,6 @@
 							   value="${articleInfoPage.litpic}">
 						<span class="Validform_checktip"></span>
 					</td>
-				</tr>
-				<tr>
 					<td align="right">
 						<label class="Validform_label">
 							作者:
@@ -94,8 +88,6 @@
 							   value="${articleInfoPage.hot}">
 						<span class="Validform_checktip"></span>
 					</td>
-				</tr>
-				<tr>
 					<td align="right">
 						<label class="Validform_label">
 							站长推荐（1：推荐；0：不推荐）:

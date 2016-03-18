@@ -30,7 +30,7 @@ import javax.persistence.SequenceGenerator;
 @SuppressWarnings("serial")
 public class ArticleInfoEntity implements java.io.Serializable {
 	/**id*/
-	private java.lang.Integer id;
+	private java.lang.String id;
 	/**值为0,1,2三个标示。0为删除状态，1为显示状态，2为隐藏状态*/
 	private java.lang.String status;
 	/**所属栏目*/
@@ -65,8 +65,8 @@ public class ArticleInfoEntity implements java.io.Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name ="ID",nullable=false,precision=10,scale=0)
-	public java.lang.Integer getId(){
+	@Column(name ="ID",nullable=false,length=32)
+	public java.lang.String getId(){
 		return this.id;
 	}
 
@@ -74,7 +74,7 @@ public class ArticleInfoEntity implements java.io.Serializable {
 	 *方法: 设置java.lang.Integer
 	 *@param: java.lang.Integer  id
 	 */
-	public void setId(java.lang.Integer id){
+	public void setId(java.lang.String id){
 		this.id = id;
 	}
 	/**

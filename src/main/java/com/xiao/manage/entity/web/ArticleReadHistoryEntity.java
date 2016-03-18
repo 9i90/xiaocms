@@ -32,7 +32,7 @@ public class ArticleReadHistoryEntity implements java.io.Serializable {
 	/**id*/
 	private java.lang.String id;
 	/**文章ID*/
-	private java.lang.Integer articleId;
+	private java.lang.String articleId;
 	/**分享人ID*/
 	private java.lang.Integer shareUserId;
 	/**阅读时间*/
@@ -65,8 +65,8 @@ public class ArticleReadHistoryEntity implements java.io.Serializable {
 	 *方法: 取得java.lang.Integer
 	 *@return: java.lang.Integer  文章ID
 	 */
-	@Column(name ="ARTICLE_ID",nullable=false,precision=10,scale=0)
-	public java.lang.Integer getArticleId(){
+	@Column(name ="ARTICLE_ID",nullable=false,length=32)
+	public java.lang.String getArticleId(){
 		return this.articleId;
 	}
 
@@ -74,7 +74,7 @@ public class ArticleReadHistoryEntity implements java.io.Serializable {
 	 *方法: 设置java.lang.Integer
 	 *@param: java.lang.Integer  文章ID
 	 */
-	public void setArticleId(java.lang.Integer articleId){
+	public void setArticleId(java.lang.String articleId){
 		this.articleId = articleId;
 	}
 	/**
